@@ -65,3 +65,6 @@ const appRoutes: Routes = [
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+
+// ng deploy --base-href=/myFlix-Angular-client/
