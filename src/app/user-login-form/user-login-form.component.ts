@@ -10,11 +10,15 @@ import { UserRegistrationService } from '../fetch-api-data.service';
 // This import is used to display notifications back to the user
 import { MatSnackBar } from '@angular/material/snack-bar';
 
+// Allows for routing to Movies View on successful Login
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-user-login-form',
   templateUrl: './user-login-form.component.html',
   styleUrls: ['./user-login-form.component.scss']
 })
+
 export class UserLoginFormComponent implements OnInit {
 
   @Input() userData = { Username: '', Password: '' };
@@ -22,7 +26,8 @@ export class UserLoginFormComponent implements OnInit {
   constructor(
     public fetchApiData: UserRegistrationService,
     public dialogRef: MatDialogRef<UserLoginFormComponent>,
-    public snackBar: MatSnackBar
+    public snackBar: MatSnackBar,
+    public router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -39,9 +44,11 @@ export class UserLoginFormComponent implements OnInit {
       this.snackBar.open(readableResult, 'OK', {
         duration: 2000
       });
-      // PLACE TOKEN AND USERNAME IN LOCAL STORAGE HERE
-      localStorage.setItem('Token', result.token)
-      localStorage.setItem('User', result.user.Username)
+      // Store username and auth token in local storage to enable Auth-Required API calls
+      localStorage.setItem('token', result.token)
+      localStorage.setItem('user', result.user.Username)
+      // Navigate logged in user to the default screen for logged in users: Movie View
+      this.router.navigate(['movies']);
     }, (result) => {
       console.log('Second Section');
       // console.log(result.token);

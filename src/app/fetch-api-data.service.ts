@@ -63,7 +63,7 @@ export class UserRegistrationService {
     );
   }
 
-  getMovie(title: string): Observable<any> {
+  getMovie(title: string | null): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http.get<Response>(apiUrl + 'movies/' + title, {
       headers: new HttpHeaders(
@@ -76,7 +76,7 @@ export class UserRegistrationService {
     );
   }
 
-  getDirector(name: string): Observable<any> {
+  getDirector(name: string | null): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http.get<Response>(apiUrl + 'directors/' + name, {
       headers: new HttpHeaders(
@@ -89,7 +89,7 @@ export class UserRegistrationService {
     );
   }
 
-  getGenre(name: string): Observable<any> {
+  getGenre(name: string | null): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http.get<Response>(apiUrl + 'genres/' + name, {
       headers: new HttpHeaders(
@@ -103,7 +103,7 @@ export class UserRegistrationService {
   }
 
   // Should this give less info than all of the discretely tracked aspects of each user?
-  getUser(name: string): Observable<any> {
+  getUser(name: string | null): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http.get<Response>(apiUrl + 'users/' + name, {
       headers: new HttpHeaders(
@@ -117,7 +117,7 @@ export class UserRegistrationService {
   }
 
   // How to return only response.body.FavoriteMovies?
-  getFavMovies(name: string): Observable<any> {
+  getFavMovies(name: string | null): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http.get<Response>(apiUrl + 'users/' + name, {
       headers: new HttpHeaders(
@@ -130,9 +130,9 @@ export class UserRegistrationService {
     );
   }
 
-  addFavMovie(userDetails: any, movieID: string): Observable<any> {
+  addFavMovie(userDetails: any, movieID: string | null): Observable<any> {
     const token = localStorage.getItem('token');
-    return this.http.post<Response>(apiUrl + 'users/' + userDetails.Username + 'favorites/' + movieID, '', {
+    return this.http.post<Response>(apiUrl + 'users/' + userDetails.Username + '/favorites/' + movieID, '', {
       headers: new HttpHeaders(
         {
           Authorization: 'Bearer ' + token,
@@ -143,9 +143,9 @@ export class UserRegistrationService {
     );
   }
 
-  removeFavMovie(userDetails: any, movieID: string): Observable<any> {
+  removeFavMovie(userDetails: any, movieID: string | null): Observable<any> {
     const token = localStorage.getItem('token');
-    return this.http.delete<Response>(apiUrl + 'users/' + userDetails.Username + 'favorites/' + movieID, {
+    return this.http.delete<Response>(apiUrl + 'users/' + userDetails.Username + '/favorites/' + movieID, {
       headers: new HttpHeaders(
         {
           Authorization: 'Bearer ' + token,
