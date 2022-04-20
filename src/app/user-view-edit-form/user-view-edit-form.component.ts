@@ -34,6 +34,7 @@ export class UserViewEditFormComponent implements OnInit {
   }
 
   editUser(): void {
+    let name = { Username: localStorage.getItem('user') }
     this.fetchApiData.userEdit(name, this.userData).subscribe((result) => {
       this.dialogRef.close(); // This will close the modal on success!
       let readableResult = 'Account Details edited for: ' + result.Username
