@@ -1,5 +1,6 @@
 <div style="display: flex; flex-direction: column;">
-  <mat-card *ngFor="let Genre of genres;" style="flex: 1 1 auto; max-width: 400px">
+  <app-header-view></app-header-view>
+  <mat-card *ngFor="let Genre of genres;" style="flex: 1 1 auto; max-width: 400px; margin-top: 36px;">
     <mat-card-header>
       <mat-card-title>{{Genre.Name}}</mat-card-title>
       <!-- <mat-card-subtitle>Directed by: {{movie.Director.Name}}</mat-card-subtitle> -->

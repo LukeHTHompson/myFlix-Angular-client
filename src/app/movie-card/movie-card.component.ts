@@ -68,6 +68,7 @@ export class MovieCardComponent {
       console.log(result);
       // console.log(movie);
       let readableResult: string = result.FavoriteMovies.indexOf(movieId) > -1 ? movie.Title + ' is now a favorite.' : 'Something Went Wrong. Please Try Again.'
+      this.favoriteMovies = result.FavoriteMovies;
       // console.log(readableResult);
       this.snackBar.open(readableResult, 'OK', {
         duration: 2000
@@ -90,6 +91,7 @@ export class MovieCardComponent {
       console.log(result);
       // console.log(movie);
       let readableResult: string = result.FavoriteMovies.indexOf(movieId) === -1 ? movie.Title + ' is no longer a favorite.' : 'Something Went Wrong. Please Try Again.'
+      this.favoriteMovies = result.FavoriteMovies;
       // console.log(readableResult);
       this.snackBar.open(readableResult, 'OK', {
         duration: 2000

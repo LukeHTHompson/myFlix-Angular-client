@@ -1,3 +1,7 @@
+/*
+git remote add origin https://github.com/LukeHTHompson/myFlix-Angular-client.git
+ng deploy --base-href=/myFlix-Angular-client/
+*/
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
@@ -24,6 +28,9 @@ import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { SingleMovieViewComponent } from './single-movie-view/single-movie-view.component';
 import { DirectorViewComponent } from './director-view/director-view.component';
 import { GenreViewComponent } from './genre-view/genre-view.component';
+import { HeaderViewComponent } from './header-view/header-view.component';
+import { UserViewComponent } from './user-view/user-view.component';
+import { UserViewEditFormComponent } from './user-view-edit-form/user-view-edit-form.component';
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
@@ -31,6 +38,7 @@ const appRoutes: Routes = [
   { path: 'genres/:Genre', component: GenreViewComponent },
   { path: 'directors/:Director', component: DirectorViewComponent },
   { path: 'movies/:Movie', component: SingleMovieViewComponent },
+  { path: 'users/:User', component: UserViewComponent },
   { path: '', redirectTo: 'welcome', pathMatch: 'prefix' },
 ];
 
@@ -43,7 +51,10 @@ const appRoutes: Routes = [
     WelcomePageComponent,
     SingleMovieViewComponent,
     DirectorViewComponent,
-    GenreViewComponent
+    GenreViewComponent,
+    HeaderViewComponent,
+    UserViewComponent,
+    UserViewEditFormComponent
   ],
   imports: [
     BrowserModule,
@@ -65,6 +76,3 @@ const appRoutes: Routes = [
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-
-
-// ng deploy --base-href=/myFlix-Angular-client/

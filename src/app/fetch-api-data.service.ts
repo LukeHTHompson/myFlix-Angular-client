@@ -6,10 +6,13 @@ import { map } from 'rxjs/operators';
 
 // Declare the API URL that will supply data to the app
 const apiUrl = 'https://lht-my-cinema.herokuapp.com/'
+
 @Injectable({
   providedIn: 'root'
 })
+
 export class UserRegistrationService {
+
   // Providing an imported module to constructor allows anything invoking this class to use that module (via this.http in this case)
   constructor(private http: HttpClient) { }
 
@@ -30,12 +33,18 @@ export class UserRegistrationService {
     console.log(userDetails);
     console.log(newDetails);
     const token = localStorage.getItem('token');
-    return this.http.put(apiUrl + 'users/' + userDetails.Username, newDetails, {
+    return this.http.put<Response>(apiUrl + 'users/' + userDetails.Username, newDetails, {
       headers: new HttpHeaders(
         {
           Authorization: 'Bearer ' + token,
         })
-    }).pipe(catchError(this.handleError))
+    }).pipe(
+      map(this.extractResponseData),
+      // ISSUE HERE?^
+      // How to find out if the API call is failing, or if the extractRepsoneData function is failing here?
+      // Seems like the API call is failing, but I don't see any reason why it would fail...
+      catchError(this.handleError)
+    );
   }
 
   userDelete(userDetails: any): Observable<any> {

@@ -47,6 +47,7 @@ export class UserLoginFormComponent implements OnInit {
       // Store username and auth token in local storage to enable Auth-Required API calls
       localStorage.setItem('token', result.token)
       localStorage.setItem('user', result.user.Username)
+      localStorage.setItem('passwordLength', '*'.repeat(this.userData.Password.length))
       // Navigate logged in user to the default screen for logged in users: Movie View
       this.router.navigate(['movies']);
     }, (result) => {

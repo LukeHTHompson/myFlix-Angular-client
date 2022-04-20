@@ -1,0 +1,19 @@
+<div [ngStyle]="{'max-width': '432px','width': '100%'}">
+  <app-header-view></app-header-view>
+  <p [ngStyle]="{'padding-top': '46px'}">
+    Username: {{Username}}
+    <button style="float: right;" (click)="openUserLoginDialog()">Edit</button>
+  </p>
+  <p>
+    Password: {{'*'.repeat(Password.length)}}
+    <button style="float: right;" (click)="openUserLoginDialog()">Edit</button>
+  </p>
+  <p>
+    Email: {{Email}}
+    <button style="float: right;" (click)="openUserLoginDialog()">Edit</button>
+  </p>
+  <p>
+    Birthday: {{Birthday | date:'longDate'}}
+    <button style="float: right;" (click)="openUserLoginDialog()">Edit</button>
+  </p>
+</div>
