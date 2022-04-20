@@ -14,7 +14,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class GenreViewComponent implements OnInit {
   genres: any[] = [];
-  // Could use to say if you have any favorites in the Genre
+  // Could use later on to say if you have any favorites in the Genre
   // favoriteMovies: any[] = [];
 
   constructor(
@@ -30,14 +30,11 @@ export class GenreViewComponent implements OnInit {
 
   getSingleGenre(): void {
     let name = this.route.snapshot.queryParamMap.get('name')
-    // console.log(title);
     this.fetchApiData.getGenre(name).subscribe((resp: any) => {
-      // console.log(title)
       console.log(resp[0].Genre)
       // Force response to take the form of an Array with []
       // This allows the use of *ngFor in Component's Template, maintaining consistency with All Movies View
       this.genres = [resp[0].Genre];
-      // console.log(this.movies);
       return this.genres;
     });
   }

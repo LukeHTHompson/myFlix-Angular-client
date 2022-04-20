@@ -31,14 +31,9 @@ export class DirectorViewComponent implements OnInit {
 
   getSingleDirector(): void {
     let name = this.route.snapshot.queryParamMap.get('name')
-    // console.log(title);
     this.fetchApiData.getDirector(name).subscribe((resp: any) => {
-      // console.log(title)
-      // console.log(resp)
       // Force response to take the form of an Array with []
       // This allows the use of *ngFor in Component's Template, maintaining consistency with All Movies View
-      console.log(name);
-      console.log(resp[0].Director);
       this.directors = [resp[0].Director];
       return this.directors;
     });

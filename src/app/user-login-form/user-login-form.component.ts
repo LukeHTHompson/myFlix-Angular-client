@@ -37,9 +37,6 @@ export class UserLoginFormComponent implements OnInit {
     this.fetchApiData.userLogin(this.userData).subscribe((result) => {
       // Logic for a successful user registration goes here! (To be implemented)
       this.dialogRef.close(); // This will close the modal on success!
-      console.log(result);
-      console.log(result.token);
-      console.log(result.user);
       let readableResult: string = result.user.Username ? result.user.Username + ' Logged In!' : result
       this.snackBar.open(readableResult, 'OK', {
         duration: 2000
@@ -51,9 +48,6 @@ export class UserLoginFormComponent implements OnInit {
       // Navigate logged in user to the default screen for logged in users: Movie View
       this.router.navigate(['movies']);
     }, (result) => {
-      console.log('Second Section');
-      // console.log(result.token);
-      // let readableResult: string = result.user.Username ? result.user.Username + ' Logged In!' : result
       this.snackBar.open(result, 'OK', {
         duration: 2000
       });
