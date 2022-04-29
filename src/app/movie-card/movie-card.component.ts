@@ -27,6 +27,9 @@ export class MovieCardComponent {
     this.getFavoriteMovies();
   }
 
+  /**
+   * This function returns discrete data for all movies in the database.
+   */
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
@@ -34,6 +37,9 @@ export class MovieCardComponent {
     });
   }
 
+  /**
+   * This function returns an array of the logged in user's favorite movies.
+   */
   getFavoriteMovies(): void {
     let name = localStorage.getItem('user') || ''
     this.fetchApiData.getFavMovies(name).subscribe((resp: any) => {
@@ -42,18 +48,40 @@ export class MovieCardComponent {
     })
   }
 
+  /**
+   * This function facilitates routing the user to a Movie details page.
+   * @param title This parameter is a string matching a movie object's Genre value (All Movie.Title values can be viewed through getAllMovies() in fetch-api-data.service.ts)
+   */
   navMovie(title: string): void {
     this.router.navigate(['movies/', title], { queryParams: { title: title } });
   }
 
+  /**
+   * This function facilitates routing the user to a Genre details page.
+   * @param name This parameter is a string matching a movie object's Genre value (All Movie.Genre.Name values can be viewed through getAllMovies() in fetch-api-data.service.ts)
+   */
   navGenre(name: string): void {
     this.router.navigate(['genres/', name], { queryParams: { name: name } });
   }
 
+  /**
+   * This function facilitates routing the user to a Director details page.
+   * @param name This parameter is a string matching a movie object's Director value (All Movie.Director.Name values can be viewed through getAllMovies() in fetch-api-data.service.ts)
+   */
   navDirector(name: string): void {
     this.router.navigate(['directors/', name], { queryParams: { name: name } });
   }
 
+  /**
+   * This function adds the relevant movie to the list of favorites for the logged in user.
+   * @param movie This parameter defines the movie to be added as a favorite for the logged in user.
+   * This paramter should be an Object with the  structure:
+   * ```
+   * movie = {
+   * _id: ...
+   * }
+   * ```
+   */
   addFavorite(movie: any): void {
     let userDetails = { Username: localStorage.getItem('user') || '' }
     let movieId = movie._id
@@ -70,6 +98,16 @@ export class MovieCardComponent {
     });
   }
 
+  /**
+   * This function removes the relevant movie from the list of favorites for the logged in user.
+   * @param movie This parameter defines the movie to be removed as a favorite for the logged in user.
+   * This paramter should be an Object with the  structure:
+   * ```
+   * movie = {
+   * _id: ...
+   * }
+   * ```
+   */
   removeFavorite(movie: any): void {
     let userDetails = { Username: localStorage.getItem('user') || '' }
     let movieId = movie._id

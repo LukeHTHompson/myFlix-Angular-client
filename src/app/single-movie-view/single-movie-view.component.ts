@@ -28,6 +28,10 @@ export class SingleMovieViewComponent implements OnInit {
     this.getFavoriteMovies();
   }
 
+  /**
+   * Function retrieves all discrete data for a single movie.
+   * No parameter is supplied for the title as this information is pulled directly from the routing information.
+   */
   getSingleMovie(): void {
     let title = this.route.snapshot.queryParamMap.get('title')
     this.fetchApiData.getMovie(title).subscribe((resp: any) => {
@@ -38,6 +42,9 @@ export class SingleMovieViewComponent implements OnInit {
     });
   }
 
+  /**
+   * This function provides the array of favorite movies associated with the logged in user.
+   */
   getFavoriteMovies(): void {
     let name = localStorage.getItem('user') || ''
     this.fetchApiData.getFavMovies(name).subscribe((resp: any) => {
@@ -46,6 +53,16 @@ export class SingleMovieViewComponent implements OnInit {
     })
   }
 
+  /**
+   * This function adds the relevant movie to the list of favorites for the logged in user.
+   * @param movie This parameter defines the movie to be added as a favorite for the logged in user.
+   * This paramter should be an Object with the  structure:
+   * ```
+   * movie = {
+   * _id: ...
+   * }
+   * ```
+   */
   addFavorite(movie: any): void {
     let userDetails = { Username: localStorage.getItem('user') || '' }
     let movieId = movie._id
@@ -62,6 +79,16 @@ export class SingleMovieViewComponent implements OnInit {
     });
   }
 
+  /**
+   * This function removes the relevant movie from the list of favorites for the logged in user.
+   * @param movie This parameter defines the movie to be removed as a favorite for the logged in user.
+   * This paramter should be an Object with the  structure:
+   * ```
+   * movie = {
+   * _id: ...
+   * }
+   * ```
+   */
   removeFavorite(movie: any): void {
     let userDetails = { Username: localStorage.getItem('user') || '' }
     let movieId = movie._id
@@ -78,14 +105,25 @@ export class SingleMovieViewComponent implements OnInit {
     });
   }
 
+  /**
+   * This function facilitates routing the user to a Genre details page.
+   * @param name This parameter is a string matching a movie object's Genre value (All Movie.Genre.Name values can be viewed through getAllMovies() in fetch-api-data.service.ts)
+   */
   navGenre(name: string): void {
     this.router.navigate(['genres/' + name], { queryParams: { name: name } });
   }
 
+  /**
+   * This function facilitates routing the user to a Director details page.
+   * @param name This parameter is a string matching a movie object's Director value (All Movie.Director.Name values can be viewed through getAllMovies() in fetch-api-data.service.ts)
+   */
   navDirector(name: string): void {
     this.router.navigate(['directors/' + name], { queryParams: { name: name } });
   }
 
+  /**
+   * This function facilitates routing the user to the homepage which shows all movies in the database.
+   */
   navAllMovies(): void {
     this.router.navigate(['movies']);
   }

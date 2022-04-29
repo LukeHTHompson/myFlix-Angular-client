@@ -34,6 +34,9 @@ export class UserViewComponent implements OnInit {
     this.viewUser();
   }
 
+  /**
+   * Function calls for and returns the user data assocaited with the logged in user.
+   */
   viewUser(): void {
     let name = localStorage.getItem('user')
     this.fetchApiData.getUser(name).subscribe((result) => {
@@ -46,6 +49,9 @@ export class UserViewComponent implements OnInit {
     });
   }
 
+  /**
+   * Function launches modal for providing updated user information for the logged in user.
+   */
   openUserEditDialog(): void {
     this.dialog.open(UserViewEditFormComponent, {
       width: '280px'

@@ -33,6 +33,10 @@ export class UserLoginFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * This function logins in a user using their username and password.
+   * The username and password are supplied from the input fields from user-login-form.component.html
+   */
   loginUser(): void {
     this.fetchApiData.userLogin(this.userData).subscribe((result) => {
       // Logic for a successful user registration goes here! (To be implemented)

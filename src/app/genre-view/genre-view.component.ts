@@ -28,6 +28,10 @@ export class GenreViewComponent implements OnInit {
     this.getSingleGenre()
   }
 
+  /**
+   * This function returns discrete data available for the selected Genre.
+   * No parameter is defined for specifying the genre as this info is pulled directly from the routing information.
+   */
   getSingleGenre(): void {
     let name = this.route.snapshot.queryParamMap.get('name')
     this.fetchApiData.getGenre(name).subscribe((resp: any) => {
@@ -39,6 +43,9 @@ export class GenreViewComponent implements OnInit {
     });
   }
 
+  /**
+   * This function facilitates routing the user to the home page which features all movies in the database.
+   */
   navAllMovies(): void {
     this.router.navigate(['movies']);
   }

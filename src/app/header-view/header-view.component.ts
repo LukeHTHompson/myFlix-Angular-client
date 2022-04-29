@@ -17,19 +17,31 @@ export class HeaderViewComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * This function facilitates routing the user to a User details page for the logged in user.
+   */
   navProfile(): void {
     let username = localStorage.getItem('user') || ''
     this.router.navigate(['users/' + username], { queryParams: { username: username } });
   }
 
+  /**
+   * This function facilitates routing the user to the home page which features all movies in the database.
+   */
   navHome(): void {
     this.router.navigate(['movies']);
   }
 
+  /**
+   * This function facilitates routing the user to the welcome page which features registration and login options.
+   */
   navLogout(): void {
     this.router.navigate([''])
   }
 
+  /**
+   * This function clears local items which define the currently logged in user and returns them to the welcome page via navLogout().
+   */
   Logout(): void {
     localStorage.setItem('token', '');
     localStorage.setItem('user', '');

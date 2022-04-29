@@ -28,7 +28,10 @@ export class DirectorViewComponent implements OnInit {
     this.getSingleDirector();
   }
 
-
+  /**
+   * This function returns discrete data available for the selected Director.
+   * No parameter is defined for specifying the Director as this info is pulled directly from the routing information.
+   */
   getSingleDirector(): void {
     let name = this.route.snapshot.queryParamMap.get('name')
     this.fetchApiData.getDirector(name).subscribe((resp: any) => {
@@ -39,6 +42,9 @@ export class DirectorViewComponent implements OnInit {
     });
   }
 
+  /**
+   * This function facilitates routing the user to the home page which features all movies in the database.
+   */
   navAllMovies(): void {
     this.router.navigate(['movies']);
   }

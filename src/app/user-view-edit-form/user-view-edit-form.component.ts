@@ -33,6 +33,10 @@ export class UserViewEditFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * Function is used to edit/update information for the logged in user in the backend database according to the information provided.
+   * Uses data from input fields in user-view-edit-form.component.html
+   */
   editUser(): void {
     let name = { Username: localStorage.getItem('user') }
     this.fetchApiData.userEdit(name, this.userData).subscribe((result) => {
@@ -49,6 +53,9 @@ export class UserViewEditFormComponent implements OnInit {
     });
   }
 
+  /**
+   * This function uses the new information associated with the edited user to login to the site.
+   */
   loginNewUser(): void {
     this.fetchApiData.userLogin({ Username: this.userData.Username, Password: this.userData.Password }).subscribe((result) => {
       this.dialogRef.close(); // This will close the modal on success!

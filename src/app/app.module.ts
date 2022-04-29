@@ -32,6 +32,9 @@ import { HeaderViewComponent } from './header-view/header-view.component';
 import { UserViewComponent } from './user-view/user-view.component';
 import { UserViewEditFormComponent } from './user-view-edit-form/user-view-edit-form.component';
 
+/**
+ * appRoutes specifies the different URL paths used in the application and connects each of them to a specific component.
+ */
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
   { path: 'movies', component: MovieCardComponent },
