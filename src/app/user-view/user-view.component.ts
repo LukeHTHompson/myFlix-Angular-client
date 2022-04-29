@@ -46,7 +46,7 @@ export class UserViewComponent implements OnInit {
     });
   }
 
-  openUserLoginDialog(): void {
+  openUserEditDialog(): void {
     this.dialog.open(UserViewEditFormComponent, {
       width: '280px'
     });
